@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="project15slider.css" />
+  </head>
+  <body>
+    <div class="slider-container">
+      <div class="slide">
+        <img src="img/img-1.jpeg" class="slide-img" alt="" />
+        <h1>1</h1>
+      </div>
+      <div class="slide">
+	  <img src="img/img-2.jpeg" class="slide-img" alt="" />
+        <h1>2</h1>
+      </div>
+      <div class="slide">
+	  <img src="img/img-3.jpeg" class="slide-img" alt="" />
+        <h1>3</h1>
+      </div>
+      <div class="slide">
+        <div>
+          <img src="img/person-1.jpeg" class="person-img" alt="" />
+          <h4>susan doe</h4>
+          <h1>4</h1>
+        </div>
+      </div>
+    </div>
+    <div class="btn-container">
+      <button type="button" class="prevBtn">
+        prev
+      </button>
+      <button type="button" class="nextBtn">
+        next
+      </button>
+    </div>
+
+    <!-- javascript -->
+    <script>
+		const slides = document.querySelectorAll(".slide");
+const nextBtn = document.querySelector(".nextBtn");
+const prevBtn = document.querySelector(".prevBtn");
+slides.forEach(function (slide, index) {
+  slide.style.left = `${index * 100}%`;
+});
+let counter = 0;
+nextBtn.addEventListener("click", function () {
+  counter++;
+  carousel();
+});
+
+prevBtn.addEventListener("click", function () {
+  counter--;
+  carousel();
+});
+
+function carousel() {
+  // working with slides
+  // if (counter === slides.length) {
+  //   counter = 0;
+  // }
+  // if (counter < 0) {
+  //   counter = slides.length - 1;
+  // }
+  // working with buttons
+
+  if (counter < slides.length - 1) {
+    nextBtn.style.display = "block";
+  } else {
+    nextBtn.style.display = "none";
+  }
+  if (counter > 0) {
+    prevBtn.style.display = "block";
+  } else {
+    prevBtn.style.display = "none";
+  }
+  slides.forEach(function (slide) {
+    slide.style.transform = `translateX(-${counter * 100}%)`;
+  });
+}
+
+prevBtn.style.display = "none";
+	</script>
+  </body>
+</html>
